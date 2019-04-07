@@ -1,0 +1,7 @@
+exclude_patterns:
+	- '**/*.spec.ts'
+	- '**/__mocks__/'
+	- 'dist'
+	- 'src/app/*'
+	- 'src/environments/*'
+	- '**/*.js'
