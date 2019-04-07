@@ -1,14 +1,19 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {SanStepperComponent} from './san-stepper.component';
+import {MatIconModule, MatStepperModule} from '@angular/material';
 
-describe('DialogTemplateComponent', () => {
+describe('SanStepperComponent', () => {
 	let component: SanStepperComponent;
 	let fixture: ComponentFixture<SanStepperComponent>;
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-			declarations: [SanStepperComponent]
+			declarations: [SanStepperComponent],
+			imports: [
+				MatStepperModule,
+				MatIconModule
+			]
 		})
 			.compileComponents();
 	}));
@@ -19,7 +24,7 @@ describe('DialogTemplateComponent', () => {
 		fixture.detectChanges();
 	});
 
-	it('should create', () => {
+	it('should create component.', () => {
 		expect(component).toBeTruthy();
 	});
 });

@@ -9,6 +9,7 @@ import {ModalContentComponent} from '@san/components/static/modal-content/modal-
 })
 export class AppComponent {
 	private dialogRef;
+	title = 'ng-san-stepper';
 
 	constructor(
 		private dialog: MatDialog
