@@ -1,0 +1,34 @@
+<mat-horizontal-stepper #stepper [linear]="true" labelPosition="bottom">
+	<ng-container *ngIf="children && children.length > 0">
+		<mat-step *ngFor="let step of children; let isFirst = first"
+		          [hasError]="step.form && !step.form.valid"
+		          [stepControl]="step.form">
+			<ng-template matStepLabel>{{ step.label }}</ng-template>
+			<ng-template [ngTemplateOutlet]="step.template"></ng-template>
+
+			<button *ngIf="isFirst else element" mat-button matStepperNext>Next</button>
+			<ng-template #element>
+				<button mat-button matStepperPrevious>Prev</button>
+				<button mat-button matStepperNext>Next</button>
+			</ng-template>
+		</mat-step>
+	</ng-container>
+
+	<mat-step *ngIf="children && children.length > 0" class="man" state="arrow_forward">
+		<ng-template matStepLabel>Done</ng-template>
+		This is the end of the form:
+		<div>
+			<button color="primary" mat-button matStepperPrevious>Back</button>
+			<button (click)="stepper.reset()" mat-button>Reset</button>
+			<button (click)="onSubmit()" mat-button>Submit</button>
+		</div>
+	</mat-step>
+
+	<ng-template matStepperIcon="arrow_forward">
+		<mat-icon>arrow_forward</mat-icon>
+	</ng-template>
+
+	<ng-template matStepperIcon="done">
+		<mat-icon>done_all</mat-icon>
+	</ng-template>
+</mat-horizontal-stepper>

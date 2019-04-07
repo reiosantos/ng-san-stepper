@@ -1,27 +1,73 @@
-# DialogStepperForm
+# SanStepper
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.3.
+Angular Steppers directive for Angular Material
 
-## Development server
+Based on Material Steppers: 
+https://material.angular.io/components/stepper/overview#error-state
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+# USAGE
+## Installation in package.json
 
-## Code scaffolding
+```bash
+npm i -S ng-san-stepper
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+**note**: works with angular >= 2
 
-## Build
+### Import to app module
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+```ts
+import { SanStepperModule } from 'ng-san-stepper';
 
-## Running unit tests
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    SanStepperModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Write your html
 
-## Running end-to-end tests
+```html
+<san-stepper (stepSubmit)="onSubmit($event)">
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+	<your-first-step #step></your-first-step>
+	<your-second-step #step></your-second-step>
+	.....
+	<your-last-step #step></your-last-step>
 
-## Further help
+</san-stepper>
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+# Stepper Options
+
+
+Detailed service operations bellow:
+
+
+# TODO
+
+- [x] Horizontal steppers
+- [x] Linear steppers
+- [ ] Vertical steppers
+- [ ] Non-linear steppers
+- [ ] Alternative labels
+- [ ] Optional steps
+- [ ] Editable steps
+- [ ] Stepper feedback
+- [ ] Custom Css Classes
+- [ ] Create a better demo page with all options.
+
+## Remarks
+
+- Based on:
+ - [Angular Material Steppers](https://github.com/marcosmoura/angular-material-steppers)
+
+- Thanks to all ;)
