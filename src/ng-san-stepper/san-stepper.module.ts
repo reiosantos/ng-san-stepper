@@ -1,17 +1,24 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {MatIconModule, MatStepperModule} from '@angular/material';
+import {MatButtonModule, MatDialogModule, MatIconModule, MatStepperModule} from '@angular/material';
 import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
-import {SanStepperComponent} from './san-stepper.component';
+import {SanStepperComponent} from '@san-stepper/san-stepper.component';
+import {ConfirmDialogComponent} from '@san-stepper/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
 	declarations: [
-		SanStepperComponent
+		SanStepperComponent,
+		ConfirmDialogComponent,
+	],
+	entryComponents: [
+		ConfirmDialogComponent
 	],
 	imports: [
 		CommonModule,
 		MatStepperModule,
-		MatIconModule
+		MatIconModule,
+		MatButtonModule,
+		MatDialogModule
 	],
 	exports: [
 		SanStepperComponent

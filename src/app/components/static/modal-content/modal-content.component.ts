@@ -7,6 +7,9 @@ import {Component, OnInit} from '@angular/core';
 })
 export class ModalContentComponent implements OnInit {
 
+	options = {};
+	styleOptions = {};
+
 	constructor() {
 	}
 

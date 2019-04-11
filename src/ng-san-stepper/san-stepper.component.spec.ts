@@ -1,7 +1,7 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {SanStepperComponent} from './san-stepper.component';
-import {MatIconModule, MatStepperModule} from '@angular/material';
+import {MatDialogModule, MatIconModule, MatStepperModule} from '@angular/material';
+import {SanStepperComponent} from '@san-stepper/san-stepper.component';
 
 describe('SanStepperComponent', () => {
 	let component: SanStepperComponent;
@@ -12,7 +12,8 @@ describe('SanStepperComponent', () => {
 			declarations: [SanStepperComponent],
 			imports: [
 				MatStepperModule,
-				MatIconModule
+				MatIconModule,
+				MatDialogModule
 			]
 		})
 			.compileComponents();

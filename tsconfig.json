@@ -5,7 +5,8 @@
 		"paths": {
 			"@san/*": [
 				"src/app/*"
-			]
+			],
+			"@san-stepper/*": ["src/ng-san-stepper/*"]
 		},
 		"outDir": "./dist/out-tsc",
 		"sourceMap": true,

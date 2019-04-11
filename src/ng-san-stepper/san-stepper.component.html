@@ -1,26 +1,46 @@
-<mat-horizontal-stepper #stepper [linear]="true" labelPosition="bottom">
+<mat-horizontal-stepper #stepperHorizontal [linear]="_options.linear"
+                        [labelPosition]="_options.labelPosition"
+                        *ngIf="!verticalSteps else stepperVerticalTemplate">
 	<ng-container *ngIf="children && children.length > 0">
-		<mat-step *ngFor="let step of children; let isFirst = first"
+		<mat-step *ngFor="let step of children.toArray(); let isFirst = first"
 		          [hasError]="step.form && !step.form.valid"
 		          [stepControl]="step.form">
-			<ng-template matStepLabel>{{ step.label }}</ng-template>
+
+			<ng-template *ngIf="_options.showLabel" matStepLabel>{{ step.label }}</ng-template>
+
 			<ng-template [ngTemplateOutlet]="step.template"></ng-template>
 
-			<button *ngIf="isFirst else element" mat-button matStepperNext>Next</button>
-			<ng-template #element>
-				<button mat-button matStepperPrevious>Prev</button>
-				<button mat-button matStepperNext>Next</button>
-			</ng-template>
+			<ng-container *ngIf="_options.showActionButtons">
+				<div [align]="_styleOptions.buttonPosition">
+					<button *ngIf="isFirst else element" mat-raised-button color="primary"
+					        [ngClass]="_styleOptions.nextButtonClass" matStepperNext>
+						Next</button>
+					<ng-template #element>
+						<button mat-raised-button color="primary"
+						        [ngClass]="['back', _styleOptions.backButtonClass]"
+						        matStepperPrevious>Prev</button>
+						<button mat-raised-button color="primary"
+						        [ngClass]="_styleOptions.nextButtonClass"
+						        matStepperNext>Next</button>
+					</ng-template>
+				</div>
+			</ng-container>
 		</mat-step>
 	</ng-container>
 
-	<mat-step *ngIf="children && children.length > 0" class="man" state="arrow_forward">
+	<mat-step *ngIf="children && children.length > 0" state="arrow_forward">
 		<ng-template matStepLabel>Done</ng-template>
-		This is the end of the form:
-		<div>
-			<button color="primary" mat-button matStepperPrevious>Back</button>
-			<button (click)="stepper.reset()" mat-button>Reset</button>
-			<button (click)="onSubmit()" mat-button>Submit</button>
+
+		<h3 class="mat-title">It stops here, Choose any of the actions below.</h3>
+
+		<div [align]="_styleOptions.buttonPosition">
+			<button mat-raised-button color="primary"
+			        [ngClass]="['back', _styleOptions.backButtonClass]"
+			        matStepperPrevious>Back</button>
+			<button mat-flat-button color="primary" [ngClass]="_styleOptions.resetButtonClass"
+			        (click)="confirmReset(stepperHorizontal)">Reset</button>
+			<button mat-raised-button color="primary" [ngClass]="_styleOptions.submitButtonClass"
+			        (click)="onSubmit()">Submit</button>
 		</div>
 	</mat-step>
 
@@ -32,3 +52,58 @@
 		<mat-icon>done_all</mat-icon>
 	</ng-template>
 </mat-horizontal-stepper>
+
+<ng-template #stepperVerticalTemplate>
+	<mat-vertical-stepper #stepperVertical [linear]="_options.linear">
+		<ng-container *ngIf="children && children.length > 0">
+			<mat-step *ngFor="let step of children.toArray(); let isFirst = first"
+			          [hasError]="step.form && !step.form.valid"
+			          [stepControl]="step.form">
+
+				<ng-template *ngIf="_options.showLabel" matStepLabel>{{ step.label }}</ng-template>
+
+				<ng-template [ngTemplateOutlet]="step.template"></ng-template>
+
+				<ng-container *ngIf="_options.showActionButtons">
+					<div [align]="_styleOptions.buttonPosition">
+						<button *ngIf="isFirst else element" mat-raised-button color="primary"
+						        [ngClass]="_styleOptions.nextButtonClass" matStepperNext>
+							Next</button>
+						<ng-template #element>
+							<button mat-raised-button color="primary"
+							        [ngClass]="['back', _styleOptions.backButtonClass]"
+							        matStepperPrevious>Prev</button>
+							<button mat-raised-button color="primary"
+							        [ngClass]="_styleOptions.nextButtonClass"
+							        matStepperNext>Next</button>
+						</ng-template>
+					</div>
+				</ng-container>
+			</mat-step>
+		</ng-container>
+
+		<mat-step *ngIf="children && children.length > 0" state="arrow_forward">
+			<ng-template matStepLabel>Done</ng-template>
+
+			<h3 class="mat-title">It stops here, Choose any of the actions below.</h3>
+
+			<div [align]="_styleOptions.buttonPosition">
+				<button mat-raised-button color="primary"
+				        [ngClass]="['back', _styleOptions.backButtonClass]"
+				        matStepperPrevious>Back</button>
+				<button mat-flat-button color="primary" [ngClass]="_styleOptions.resetButtonClass"
+				        (click)="confirmReset(stepperVertical)">Reset</button>
+				<button mat-raised-button color="primary" [ngClass]="_styleOptions.submitButtonClass"
+				        (click)="onSubmit()">Submit</button>
+			</div>
+		</mat-step>
+
+		<ng-template matStepperIcon="arrow_forward">
+			<mat-icon>arrow_forward</mat-icon>
+		</ng-template>
+
+		<ng-template matStepperIcon="done">
+			<mat-icon>done_all</mat-icon>
+		</ng-template>
+	</mat-vertical-stepper>
+</ng-template>

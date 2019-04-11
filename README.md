@@ -61,7 +61,7 @@ Detailed service operations bellow:
 
 - [x] Horizontal steppers
 - [x] Linear steppers
-- [ ] Vertical steppers
+- [x] Vertical steppers
 - [ ] Non-linear steppers
 - [ ] Alternative labels
 - [ ] Optional steps

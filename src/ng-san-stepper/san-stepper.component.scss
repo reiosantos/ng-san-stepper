@@ -2,12 +2,29 @@
 ::ng-deep {
 	.mat-step-header {
 		.mat-step-icon-state-done {
-			background-color: green;
+			background-color: #338074;
 		}
 
 		.mat-step-icon-selected,
 		.mat-step-icon-state-edit {
-			background-color: dodgerblue;
+			background-color: #426dae;
 		}
+	}
+	button {
+		margin: 1em .2em .5em .2em !important;
+	}
+	.mat-raised-button.mat-primary {
+		background-color: #338074;
+		&.back {
+			background-color: #426dae;
+		}
+	}
+
+	.mat-flat-button.mat-primary {
+		background-color: transparent;
+		color: #000;
+	}
+	.mat-horizontal-content-container {
+		padding: 0 24px 0 24px !important;
 	}
 }

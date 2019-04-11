@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {SanStepperModule} from '../ng-san-stepper/san-stepper.module';
+import {SanStepperModule} from '@san-stepper/san-stepper.module';
 import {StepOneFormComponent} from '@san/components/dynamic/step-one-form/step-one-form.component';
 import {StepTwoFormComponent} from '@san/components/dynamic/step-two-form/step-two-form.component';
 import {
