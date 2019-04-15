@@ -2,13 +2,13 @@
                         [labelPosition]="_options.labelPosition"
                         *ngIf="!verticalSteps else stepperVerticalTemplate">
 	<ng-container *ngIf="children && children.length > 0">
-		<mat-step *ngFor="let step of children.toArray(); let isFirst = first"
-		          [hasError]="step.form && !step.form.valid"
-		          [stepControl]="step.form">
+		<mat-step *ngFor="let step of children.toArray(); let isFirst = first, let i = index"
+		          [hasError]="getStepControl(step, i)?.invalid"
+		          [stepControl]="getStepControl(step, i)">
 
-			<ng-template *ngIf="_options.showLabel" matStepLabel>{{ step.label }}</ng-template>
+			<ng-template *ngIf="_options.showLabel" matStepLabel>{{ getLabel(i) }}</ng-template>
 
-			<ng-template [ngTemplateOutlet]="step.template"></ng-template>
+			<ng-template [ngTemplateOutlet]="getTemplate(step, i)"></ng-template>
 
 			<ng-container *ngIf="_options.showActionButtons">
 				<div [align]="_styleOptions.buttonPosition">
@@ -28,16 +28,20 @@
 		</mat-step>
 	</ng-container>
 
-	<mat-step *ngIf="children && children.length > 0" state="arrow_forward">
+	<mat-step *ngIf="!_options.hideLastStep && children && children.length > 0"
+	          state="arrow_forward">
 		<ng-template matStepLabel>Done</ng-template>
 
-		<h3 class="mat-title">It stops here, Choose any of the actions below.</h3>
+		<h3 class="mat-title">
+			{{ _options.lastPageText }}
+		</h3>
 
-		<div [align]="_styleOptions.buttonPosition">
+		<div *ngIf="_options.showActionButtons" [align]="_styleOptions.buttonPosition">
 			<button mat-raised-button color="primary"
 			        [ngClass]="['back', _styleOptions.backButtonClass]"
 			        matStepperPrevious>Back</button>
-			<button mat-flat-button color="primary" [ngClass]="_styleOptions.resetButtonClass"
+			<button *ngIf="_options.showResetButton" mat-flat-button color="primary"
+			        [ngClass]="_styleOptions.resetButtonClass"
 			        (click)="confirmReset(stepperHorizontal)">Reset</button>
 			<button mat-raised-button color="primary" [ngClass]="_styleOptions.submitButtonClass"
 			        (click)="onSubmit()">Submit</button>
@@ -56,13 +60,13 @@
 <ng-template #stepperVerticalTemplate>
 	<mat-vertical-stepper #stepperVertical [linear]="_options.linear">
 		<ng-container *ngIf="children && children.length > 0">
-			<mat-step *ngFor="let step of children.toArray(); let isFirst = first"
-			          [hasError]="step.form && !step.form.valid"
-			          [stepControl]="step.form">
+			<mat-step *ngFor="let step of children.toArray(); let isFirst = first, let i = index"
+			          [hasError]="getStepControl(step, i)?.invalid"
+			          [stepControl]="getStepControl(step, i)">
 
-				<ng-template *ngIf="_options.showLabel" matStepLabel>{{ step.label }}</ng-template>
+				<ng-template *ngIf="_options.showLabel" matStepLabel>{{ getLabel(i) }}</ng-template>
 
-				<ng-template [ngTemplateOutlet]="step.template"></ng-template>
+				<ng-template [ngTemplateOutlet]="getTemplate(step, i)"></ng-template>
 
 				<ng-container *ngIf="_options.showActionButtons">
 					<div [align]="_styleOptions.buttonPosition">
@@ -82,16 +86,20 @@
 			</mat-step>
 		</ng-container>
 
-		<mat-step *ngIf="children && children.length > 0" state="arrow_forward">
+		<mat-step *ngIf="!_options.hideLastStep && children && children.length > 0"
+		          state="arrow_forward">
 			<ng-template matStepLabel>Done</ng-template>
 
-			<h3 class="mat-title">It stops here, Choose any of the actions below.</h3>
+			<h3 class="mat-title">
+				{{ _options.lastPageText }}
+			</h3>
 
-			<div [align]="_styleOptions.buttonPosition">
+			<div *ngIf="_options.showActionButtons" [align]="_styleOptions.buttonPosition">
 				<button mat-raised-button color="primary"
 				        [ngClass]="['back', _styleOptions.backButtonClass]"
 				        matStepperPrevious>Back</button>
-				<button mat-flat-button color="primary" [ngClass]="_styleOptions.resetButtonClass"
+				<button *ngIf="_options.showResetButton" mat-flat-button color="primary"
+				        [ngClass]="_styleOptions.resetButtonClass"
 				        (click)="confirmReset(stepperVertical)">Reset</button>
 				<button mat-raised-button color="primary" [ngClass]="_styleOptions.submitButtonClass"
 				        (click)="onSubmit()">Submit</button>

@@ -28,4 +28,10 @@ describe('SanStepperComponent', () => {
 	it('should create component.', () => {
 		expect(component).toBeTruthy();
 	});
+
+	it('should Submit Forms', function () {
+		const spy = spyOn(component.stepsSubmit, 'emit');
+		component.onSubmit();
+		expect(spy).toHaveBeenCalled();
+	});
 });

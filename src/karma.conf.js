@@ -32,10 +32,6 @@ module.exports = function (config) {
 				flags: ['--no-sandbox']
 			}
 		},
-		singleRun: true,
-		exclude: [
-			// "src/app/*",
-			"src/environments/*"
-		]
+		singleRun: true
 	});
 };

@@ -93,6 +93,11 @@
 						"assets": [
 							"src/favicon.ico",
 							"src/assets"
+						],
+						"codeCoverageExclude": [
+							"src/app/**/*",
+							"src/environments/**/*",
+							"**/interfaces/**/*"
 						]
 					}
 				},

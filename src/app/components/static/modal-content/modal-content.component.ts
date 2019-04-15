@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {ISanOptions} from '@san-stepper/interfaces/ISanOptions';
 
 @Component({
 	selector: 'san-modal-content',
@@ -7,7 +8,11 @@ import {Component, OnInit} from '@angular/core';
 })
 export class ModalContentComponent implements OnInit {
 
-	options = {};
+	options: ISanOptions = {
+		displayType: 'forms',
+		formNames: ['form'],
+		labels: ['First Idiot', 'Next Idiot', 'Last Idiot']
+	};
 	styleOptions = {};
 
 	constructor() {
