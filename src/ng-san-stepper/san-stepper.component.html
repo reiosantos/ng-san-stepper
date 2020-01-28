@@ -4,7 +4,11 @@
 	<ng-container *ngIf="children && children.length > 0">
 		<mat-step *ngFor="let step of children.toArray(); let isFirst = first, let i = index"
 		          [hasError]="getStepControl(step, i)?.invalid"
-		          [stepControl]="getStepControl(step, i)">
+		          [stepControl]="getStepControl(step, i)"
+				  [optional]="optionalStep(i)">
+			<ng-template matStepperIcon="edit">
+				<mat-icon>check</mat-icon>
+			</ng-template>
 
 			<ng-template *ngIf="_options.showLabel" matStepLabel>{{ getLabel(i) }}</ng-template>
 

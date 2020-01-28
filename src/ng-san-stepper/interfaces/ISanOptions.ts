@@ -11,4 +11,5 @@ export class ISanOptions {
 	lastPageText?: string;
 	hideLastStep?: boolean;
 	showLastStepButtons?: boolean;
+	optionalStep?: Array<boolean>;
 }

@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
 	styleUrls: ['./confirm-dialog.component.scss']
 })
 export class ConfirmDialogComponent {
-	dialogContent = '';
+		dialogContent = '';
 }

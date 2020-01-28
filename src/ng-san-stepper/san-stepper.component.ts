@@ -39,7 +39,8 @@ export class SanStepperComponent implements OnInit {
 		displayType: 'mixed',
 		labels: [],
 		templateNames: [],
-		lastPageText: 'It stops here, Choose any of the actions below.'
+		lastPageText: 'It stops here, Choose any of the actions below.',
+		optionalStep: []
 	};
 
 	/**
@@ -154,5 +155,9 @@ export class SanStepperComponent implements OnInit {
 		if (this.validateOptions() && this.displayType() === 'forms') {
 			return stepComponent[this._options.formNames[index]];
 		}
+	}
+	optionalStep = (index) => {
+		const option = this._options.optionalStep[index];
+		return option;
 	}
 }

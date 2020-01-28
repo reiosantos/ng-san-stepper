@@ -11,7 +11,8 @@ export class ModalContentComponent implements OnInit {
 	options: ISanOptions = {
 		displayType: 'forms',
 		formNames: ['form'],
-		labels: ['First Idiot', 'Next Idiot', 'Last Idiot']
+		labels: ['First Step', 'Next Step', 'Last Step'],
+		optionalStep: [true]
 	};
 	styleOptions = {};
 
